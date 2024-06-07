@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HelpdeskTicketSupportApp</name>
+    </assembly>
+    <members>
+        <member name="T:HelpdeskTicketSupportApp.Controllers.TicketsController">
+            <summary>
+            Kontroller für management von Ticket Objekts
+            </summary>
+        </member>
+        <member name="F:HelpdeskTicketSupportApp.Controllers.TicketsController._ticketService">
+            <summary>
+            Ticket ControllerAlgemein
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.#ctor(HelpdeskTicketSupportApp.Services.TicketService)">
+            <summary>
+            Konstruktor für den TicketController
+            </summary>
+            <param name="ticketService">instanz des TicketService</param>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.GetTickets">
+            <summary>
+            Gibt Alle Tickets züruck
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.GetTicket(System.Int32)">
+            <summary>
+            Gibts eine Bestimmtes Ticket zürück nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.CreateTicket(HelpdeskTicketSupportApp.DTOs.TicketDto)">
+            <summary>
+            Erstellt ein neues Ticket.
+            </summary>
+            <param name="ticketDto">name</param>
+            <returns>CreatedAtAction</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.UpdateTicket(System.Int32,HelpdeskTicketSupportApp.DTOs.TicketDto)">
+            <summary>
+            Aktualisiert ein Vorhandenes Ticket nach ID
+            </summary>
+            <param name="id">ID</param>
+            <param name="ticketDto">NAme</param>
+            <returns>UpdateTicketAsync</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Controllers.TicketsController.DeleteTicket(System.Int32)">
+            <summary>
+            löscht ein bestimmtes Ticket nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>DeleteTicketAsync</returns>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.Data.AppDbContext">
+            <summary>
+            Datenbank Kontext
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{HelpdeskTicketSupportApp.Data.AppDbContext})">
+            <summary>
+            Kontruktor fur DBKontext
+            </summary>
+            <param name="options">options für DB kontext</param>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Data.AppDbContext.Tickets">
+            <summary>
+            DBset für Tickets
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Data.AppDbContext.Users">
+            <summary>
+            DB Set Für benutzer
+            </summary>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.Data.ITicketRepository">
+            <summary>
+            Schnitstelle für das Ticket Repository. 
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.ITicketRepository.GetAllTicketsAsync">
+            <summary>
+            Bringt alle die Tickets
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.ITicketRepository.GetTicketByIdAsync(System.Int32)">
+            <summary>
+            Bringt eine vorhandene Ticket nachID
+            </summary>
+            <param name="id">ID</param>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.ITicketRepository.CreateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            Erstellt eine neue Ticket
+            </summary>
+            <param name="ticket">Name</param>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.ITicketRepository.UpdateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            Aktualisiert ein vorhandenes Ticket Asyncron
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.ITicketRepository.DeleteTicketAsync(System.Int32)">
+            <summary>
+            Löscht Eine Vorhandene Ticket nach Id
+            </summary>
+            <param name="id">ID</param>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.Data.TicketRepository">
+            <summary>
+            Repository fur zugriff den Ticketdaten.
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.#ctor(HelpdeskTicketSupportApp.Data.AppDbContext)">
+            <summary>
+            Kontruktor für Ticketrepository.
+            </summary>
+            <param name="context">Datenbankkontext</param>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.GetAllTicketsAsync">
+            <summary>
+            Gibt Alle Tickets zuruck.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.GetTicketByIdAsync(System.Int32)">
+            <summary>
+            Gibts ein ticked mit ID zurück.
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.CreateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            Erstellt neue Ticket
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.UpdateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            Aktualisiert vorhandene Ticket.
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Data.TicketRepository.DeleteTicketAsync(System.Int32)">
+            <summary>
+            löscht ein Ticket nach ID.
+            </summary>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.DTOs.TicketDto">
+            <summary>
+            DTO (Data Transfer Objekt) ist eine objekt für Daten trensfer inzwischen DB .
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.DTOs.TicketDto.Id">
+            <summary>
+            Ticket Objekt fur Daten Transfer, ID von TicketObjekt
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.DTOs.TicketDto.Title">
+            <summary>
+            Title des Ticket Objekts
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.DTOs.TicketDto.Description">
+            <summary>
+            Erklärung bereich des Ticket Objekts
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.DTOs.TicketDto.Status">
+            <summary>
+            Status des Ticket Objekts
+            </summary>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.Models.Ticket">
+            <summary>
+            Represäntiert ein Ticket
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.Id">
+            <summary>
+            Ticket ÍD
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.Title">
+            <summary>
+            Titel Des Tickets
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.Description">
+            <summary>
+            Beschreibung Des Ticket (inhalt Den Ticket)
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.Status">
+            <summary>
+            status des Tickets
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.CreatedAt">
+            <summary>
+            Erstell Datum des Tickets
+            </summary>
+        </member>
+        <member name="P:HelpdeskTicketSupportApp.Models.Ticket.UpdatedAt">
+            <summary>
+            Letzte Aktualizierung Datum Des Tickets
+            </summary>
+        </member>
+        <member name="T:HelpdeskTicketSupportApp.Services.TicketService">
+            <summary>
+            Dienst für die Verarbeitung von Ticketgeschäftslogik.
+            </summary>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.#ctor(HelpdeskTicketSupportApp.Data.ITicketRepository)">
+            <summary>
+            Konstruktor für den TicketService.
+            </summary>
+            <param name="ticketRepository">Ticket-Repository-Instanz.</param>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.GetAllTicketsAsync">
+            <summary>
+            Gibts Alle Tickets zurück.
+            </summary>
+            <returns>await ticketrepository.GetallTicketsAsync</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.GetTicketByIdAsync(System.Int32)">
+            <summary>
+            Gibt ein Ticket nach ID zurück.
+            </summary>
+            <param name="id">int Id</param>
+            <returns>GetTicketbyIdAsync</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.CreateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            erstell ein neues Ticket 
+            </summary>
+            <param name="ticket">Ticket</param>
+            <returns>CreateTicketAsync</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.UpdateTicketAsync(HelpdeskTicketSupportApp.Models.Ticket)">
+            <summary>
+            aktualisiert ein vorhandenes Ticket
+            </summary>
+            <param name="ticket">ticket</param>
+            <returns>UpdateTicketAsync</returns>
+        </member>
+        <member name="M:HelpdeskTicketSupportApp.Services.TicketService.DeleteTicketAsync(System.Int32)">
+            <summary>
+            Löscht Ein Ticket nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>DeleteTicketAsync</returns>
+        </member>
+        <member name="T:UsersController">
+            <summary>
+            User Datai Controlller
+            </summary>
+        </member>
+        <member name="M:UsersController.#ctor(UserService)">
+            <summary>
+            UserService Controller methode
+            </summary>
+            <param name="userService"></param>
+        </member>
+        <member name="M:UsersController.GetAllUsers">
+            <summary>
+            Bringt all Users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UsersController.GetUserById(System.Int32)">
+            <summary>
+            Bringt User datai nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>ok(user)</returns>
+        </member>
+        <member name="M:UsersController.CreateUser(User)">
+            <summary>
+            Erstellt eine Neue User
+            </summary>
+            <param name="user">user</param>
+            <returns>CreatedAtAction</returns>
+        </member>
+        <member name="M:UsersController.UpdateUser(System.Int32,User)">
+            <summary>
+            update user 
+            </summary>
+            <param name="id">ID</param>
+            <param name="user">user</param>
+            <returns>ok(updatedUser)</returns>
+        </member>
+        <member name="M:UsersController.DeleteUser(System.Int32)">
+            <summary>
+            löscht user nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>NoContent();</returns>
+        </member>
+        <member name="T:IUserRepository">
+            <summary>
+            User Interface repository
+            </summary>
+        </member>
+        <member name="M:IUserRepository.GetAllUsersAsync">
+            <summary>
+            bringt All user mit Async
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IUserRepository.GetUserByIdAsync(System.Int32)">
+            <summary>
+            bringt user nach ID
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IUserRepository.CreateUserAsync(User)">
+            <summary>
+            erstellt neue user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IUserRepository.UpdateUserAsync(User)">
+            <summary>
+            update eine user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IUserRepository.DeleteUserAsync(System.Int32)">
+            <summary>
+            löscht den user nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:UserRepository">
+            <summary>
+            UserRepositor ertellt
+            </summary>
+        </member>
+        <member name="F:UserRepository._context">
+            <summary>
+            User Context
+            </summary>
+        </member>
+        <member name="M:UserRepository.#ctor(HelpdeskTicketSupportApp.Data.AppDbContext)">
+            <summary>
+            Context Für Users
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:UserRepository.GetAllUsersAsync">
+            <summary>
+            Bringt All user Repo
+            </summary>
+            <returns>Users.ToListAsync</returns>
+        </member>
+        <member name="M:UserRepository.GetUserByIdAsync(System.Int32)">
+            <summary>
+            Bringt Users nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>Users.FindAsync</returns>
+        </member>
+        <member name="M:UserRepository.CreateUserAsync(User)">
+            <summary>
+            Erstellt neue Benutzer
+            </summary>
+            <param name="user">User</param>
+            <returns>user</returns>
+        </member>
+        <member name="M:UserRepository.UpdateUserAsync(User)">
+            <summary>
+            update user info
+            </summary>
+            <param name="user">user</param>
+            <returns>user</returns>
+        </member>
+        <member name="M:UserRepository.DeleteUserAsync(System.Int32)">
+            <summary>
+            löscht User Datai nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>Contex.savechanges</returns>
+        </member>
+        <member name="T:User">
+            <summary>
+            User Objekt
+            </summary>
+        </member>
+        <member name="P:User.Id">
+            <summary>
+            user objekts ID
+            </summary>
+        </member>
+        <member name="P:User.Username">
+            <summary>
+            user objekts Name
+            </summary>
+        </member>
+        <member name="P:User.Password">
+            <summary>
+            user objekt pasword
+            </summary>
+        </member>
+        <member name="P:User.Email">
+            <summary>
+            user mail
+            </summary>
+        </member>
+        <member name="T:UserService">
+            <summary>
+            Users Service klasse
+            </summary>
+        </member>
+        <member name="M:UserService.#ctor(IUserRepository)">
+            <summary>
+            UserRepositry Service klass
+            </summary>
+            <param name="userRepository"></param>
+        </member>
+        <member name="M:UserService.GetAllUsersAsync">
+            <summary>
+            Alle Users bringt
+            </summary>
+            <returns>GetAllUsersAsync()</returns>
+        </member>
+        <member name="M:UserService.GetUserByIdAsync(System.Int32)">
+            <summary>
+            Bringt User nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>GetUserByIDAsync();</returns>
+        </member>
+        <member name="M:UserService.CreateUserAsync(User)">
+            <summary>
+            Erstellt User mit Name
+            </summary>
+            <param name="user">user</param>
+            <returns>CreateUserAsync();</returns>
+        </member>
+        <member name="M:UserService.UpdateUserAsync(User)">
+            <summary>
+            update user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserService.DeleteUserAsync(System.Int32)">
+            <summary>
+            löscht den user nach ID
+            </summary>
+            <param name="id">ID</param>
+            <returns>DeleteUserAsync(id);</returns>
+        </member>
+    </members>
+</doc>
